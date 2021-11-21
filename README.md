@@ -37,3 +37,9 @@ PowerShellで以下を実行
 > dotnet add .\PrismSample.Lib.ViewModels\ package Prism.Unity
 > dotnet add .\PrismSample.Lib.ViewModels\ package ReactiveProperty
 ```
+
+## 実行方法
+
+```
+> dotnet run -p .\PrismSample.App.Main\
+```
