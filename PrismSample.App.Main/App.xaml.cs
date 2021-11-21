@@ -1,6 +1,9 @@
 ﻿using System.Windows;
 using Prism.Ioc;
+using Prism.Mvvm;
 using Prism.Unity;
+using PrismSample.Lib.Views;
+using PrismSample.Lib.ViewModels;
 
 namespace PrismSample.App.Main
 {
@@ -17,6 +20,13 @@ namespace PrismSample.App.Main
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // コンテナに手動でクラスやインスタンスを登録する際に使用する
+        }
+
+        protected override void ConfigureViewModelLocator()
+        {
+            base.ConfigureViewModelLocator();
+
+            ViewModelLocationProvider.Register<MainWindow, MainWindowsViewModel>();
         }
     }
 }
