@@ -4,6 +4,7 @@ using Prism.Mvvm;
 using Prism.Unity;
 using PrismSample.Lib.Views;
 using PrismSample.Lib.ViewModels;
+using PrismSample.Lib.Models;
 
 namespace PrismSample.App.Main
 {
@@ -20,6 +21,7 @@ namespace PrismSample.App.Main
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // コンテナに手動でクラスやインスタンスを登録する際に使用する
+            containerRegistry.Register<IModel, Model>();
         }
 
         protected override void ConfigureViewModelLocator()

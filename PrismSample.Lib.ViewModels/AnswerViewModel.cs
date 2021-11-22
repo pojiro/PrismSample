@@ -1,11 +1,16 @@
 ﻿using Prism.Events;
 using Prism.Mvvm;
+using PrismSample.Lib.Models;
 using Reactive.Bindings;
+using Unity;
 
 namespace PrismSample.Lib.ViewModels
 {
     public class AnswerViewModel : BindableBase
     {
+        [Dependency]
+        public IModel Model { get; set; }
+
         public ReactiveProperty<string> Answer { get; }
 
         public ReactiveCommand<object> ShowDialogCommand { get; }
@@ -21,7 +26,7 @@ namespace PrismSample.Lib.ViewModels
 
         private void CalculateAnswer(double operand)
         {
-            Answer.Value = (operand * operand).ToString();
+            Answer.Value = Model.Calculate(operand).ToString();
         }
     }
 }
