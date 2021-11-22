@@ -22,6 +22,7 @@ namespace PrismSample.App.Main
         {
             // コンテナに手動でクラスやインスタンスを登録する際に使用する
             containerRegistry.Register<IModel, Model>();
+            containerRegistry.Register<IDialogHelper, DialogHelper>();
         }
 
         protected override void ConfigureViewModelLocator()

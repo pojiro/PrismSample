@@ -2,7 +2,9 @@
 using System.Reactive.Linq;
 using Prism.Events;
 using Prism.Mvvm;
+using PrismSample.Lib.Views;
 using Reactive.Bindings;
+using Unity;
 
 namespace PrismSample.Lib.ViewModels
 {
@@ -10,6 +12,11 @@ namespace PrismSample.Lib.ViewModels
     {
         [Required, Range(-10000, 10000)]
         public ReactiveProperty<string> Operand { get; }
+        
+        [Dependency]
+        public IDialogHelper DialogHelper { get; set; }
+
+        public ReactiveCommand<object> ShowDialogCommand { get; }
 
         public OperandViewModel(IEventAggregator eventAggregator)
         {
@@ -29,6 +36,9 @@ namespace PrismSample.Lib.ViewModels
                     .GetEvent<PubSubEvent<double>>()
                     .Publish(double.Parse(z.o));
             });
+
+            ShowDialogCommand = new ReactiveCommand(Operand.ObserveHasErrors.Select(x => !x))
+                .WithSubscribe(_ => DialogHelper.ShowDialog($"N = {Operand.Value}"));
         }
     }
 }
